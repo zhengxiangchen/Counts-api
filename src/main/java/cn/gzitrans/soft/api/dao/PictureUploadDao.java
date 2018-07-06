@@ -27,7 +27,7 @@ public interface PictureUploadDao extends CrudRepository<PictureUploadEntity, Lo
 	@Query("from PictureUploadEntity where id = ?")
 	PictureUploadEntity getById(Long id);
 
-	@Query("select plateNumber from PictureUploadEntity where openId = ?")
+	@Query("select distinct plateNumber from PictureUploadEntity where openId = ?")
 	List<String> getPlateListByOpenId(String openId);
 
 }

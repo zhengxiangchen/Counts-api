@@ -22,6 +22,7 @@ import cn.gzitrans.soft.api.entity.GridPictureEntity;
 import cn.gzitrans.soft.api.entity.PictureUploadEntity;
 import cn.gzitrans.soft.api.service.PictureUploadService;
 import cn.gzitrans.soft.api.utils.FileUtils;
+import cn.gzitrans.soft.api.utils.ImageHelper;
 
 @RestController
 @RequestMapping("${basepath}/picture")
@@ -49,12 +50,13 @@ public class PictureController {
 			@RequestParam String plateNumber, @RequestParam String circularList){
 		
 		//存储上传的原图到服务器本地
-        String fileName = Math.random()*1000 + picture.getOriginalFilename();
+        String fileName = "Counts" + Math.random()*1000 + picture.getOriginalFilename();
         try {
             FileUtils.uploadFile(picture.getBytes(), filePath, fileName);
         } catch (Exception e) {
         }
         
+		
         PictureUploadEntity pictureUpload = new PictureUploadEntity();
         pictureUpload.setOpenId(openId);
         pictureUpload.setPlateNumber(plateNumber);

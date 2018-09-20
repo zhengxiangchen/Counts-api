@@ -11,6 +11,7 @@ cn\gzitrans\soft\api\utils\ThumbnailUtils.class
 cn\gzitrans\soft\api\service\PictureUploadService.class
 cn\gzitrans\soft\api\entity\CircularEntity.class
 cn\gzitrans\soft\api\utils\KeyValuePair.class
+cn\gzitrans\soft\api\controller\SendTemlateMessage.class
 cn\gzitrans\soft\api\utils\FileUtils.class
 cn\gzitrans\soft\api\controller\PlateNumberController.class
 cn\gzitrans\soft\api\dao\UserDao.class

@@ -79,6 +79,13 @@
 		    <optional>true</optional> <!-- 这个需要为 true 热部署才有效 -->
 		</dependency>
 		
+		<!-- 支持发送邮件 -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-mail</artifactId>
+		</dependency>
+		
+		
 		<!-- druid数据库 -->  
 		<!-- https://mvnrepository.com/artifact/com.alibaba/druid -->  
 		<dependency>  

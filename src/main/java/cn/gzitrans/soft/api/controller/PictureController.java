@@ -1,6 +1,7 @@
 package cn.gzitrans.soft.api.controller;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
@@ -99,7 +100,8 @@ public class PictureController {
 			gridPictureEntity.setId(pictureUploadEntity.getId());
 			gridPictureEntity.setPictureSrc(staticPath + pictureUploadEntity.getPictureName());
 			gridPictureEntity.setSignCount(circularList.size());
-			gridPictureEntity.setNavigatorUrl("/pages/editorsign/editorsign?id=" + pictureUploadEntity.getId());
+			//gridPictureEntity.setNavigatorUrl("/pages/editorsign/editorsign?id=" + pictureUploadEntity.getId());
+			gridPictureEntity.setNavigatorUrl("/pages/editorsign2/editorsign2?id=" + pictureUploadEntity.getId());
 			
 			returnList.add(gridPictureEntity);
 		}
@@ -140,7 +142,14 @@ public class PictureController {
 		JSONObject obj = JSONObject.parseObject(pictureInfo);
 		Long id = Long.valueOf(obj.get("id").toString());
 		PictureUploadEntity pictureUploadEntity = pictureUploadService.getById(id);
-		pictureUploadEntity.setSignCircle(obj.get("circularList").toString());
+		
+		String befString = pictureUploadEntity.getSignCircle();
+		
+		String newString = obj.get("circularList").toString();
+		
+		String updateString = befString.substring(0, befString.length() - 1) + "," + newString.substring(1, newString.length());
+		
+		pictureUploadEntity.setSignCircle(updateString);
 		
 		pictureUploadService.save(pictureUploadEntity);
 		

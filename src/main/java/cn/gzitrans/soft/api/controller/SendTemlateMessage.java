@@ -37,7 +37,8 @@ public class SendTemlateMessage {
 	@RequestMapping(value = "/send", method = RequestMethod.GET)
 	public String send(@RequestParam String formid, @RequestParam String openid, @RequestParam String orderId,  
 					@RequestParam String money,@RequestParam String userName,@RequestParam String phone,
-					@RequestParam String addressMsg, @RequestParam String goodsName, @RequestParam String goodsNumber) throws MessagingException{
+					@RequestParam String addressMsg, @RequestParam String goodsName, @RequestParam String goodsNumber,
+					@RequestParam String wxNumber) throws MessagingException{
 		
 		String access_token_url = "https://api.weixin.qq.com/cgi-bin/token";
 		
@@ -83,7 +84,7 @@ public class SendTemlateMessage {
 		requestParams.put("form_id", formid);
 		requestParams.put("data", obj);
 		
-		System.out.println(requestParams.toJSONString());
+		System.out.println("requestParams = " + requestParams.toJSONString());
 		
 		String sendRet = HttpAccess.postJsonRequest(send_temp_msg_url, requestParams.toJSONString(), "utf-8", "send_temp_msg");
 		
@@ -91,62 +92,45 @@ public class SendTemlateMessage {
 		String errmsg = sendRetJson.getString("errmsg");
 		if(errmsg.equals("ok")){
 			StringBuffer sb = new StringBuffer();
-//			sb.append("订单号:");
-//			sb.append(orderId);
-//			sb.append(";");
-//			sb.append("商品名称:");
-//			sb.append(goodsName);
-//			sb.append(";");
-//			sb.append("商品数量:");
-//			sb.append(goodsNumber);
-//			sb.append(";");
-//			sb.append("金额:");
-//			sb.append(money);
-//			sb.append(";");
-//			sb.append("收货人:");
-//			sb.append(userName);
-//			sb.append(";");
-//			sb.append("联系电话:");
-//			sb.append(phone);
-//			sb.append(";");
-//			sb.append("地址:");
-//			sb.append(addressMsg);
-//			sb.append(";");
-			
 			sb.append("<div>");
 			sb.append("订单号:");
 			sb.append(orderId);
-			sb.append("</div><br/>");
+			sb.append("</div>");
+			
+			sb.append("<div>");
+			sb.append("微信号:");
+			sb.append(wxNumber);
+			sb.append("</div>");
 			
 			sb.append("<div>");
 			sb.append("商品名称:");
 			sb.append(goodsName);
-			sb.append("</div><br/>");
+			sb.append("</div>");
 			
 			sb.append("<div>");
 			sb.append("商品数量:");
 			sb.append(goodsNumber);
-			sb.append("</div><br/>");
+			sb.append("</div>");
 			
 			sb.append("<div>");
 			sb.append("金额:");
 			sb.append(money);
-			sb.append("</div><br/>");
+			sb.append("</div>");
 			
 			sb.append("<div>");
 			sb.append("收货人:");
 			sb.append(userName);
-			sb.append("</div><br/>");
+			sb.append("</div>");
 			
 			sb.append("<div>");
 			sb.append("联系电话:");
 			sb.append(phone);
-			sb.append("</div><br/>");
+			sb.append("</div>");
 			
 			sb.append("<div>");
 			sb.append("地址:");
 			sb.append(addressMsg);
-			sb.append("</div><br/>");
+			sb.append("</div>");
 			
 			MimeMessage mimeMessage = mailSender.createMimeMessage();
             MimeMessageHelper message = new MimeMessageHelper(mimeMessage);

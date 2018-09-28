@@ -91,27 +91,62 @@ public class SendTemlateMessage {
 		String errmsg = sendRetJson.getString("errmsg");
 		if(errmsg.equals("ok")){
 			StringBuffer sb = new StringBuffer();
+//			sb.append("订单号:");
+//			sb.append(orderId);
+//			sb.append(";");
+//			sb.append("商品名称:");
+//			sb.append(goodsName);
+//			sb.append(";");
+//			sb.append("商品数量:");
+//			sb.append(goodsNumber);
+//			sb.append(";");
+//			sb.append("金额:");
+//			sb.append(money);
+//			sb.append(";");
+//			sb.append("收货人:");
+//			sb.append(userName);
+//			sb.append(";");
+//			sb.append("联系电话:");
+//			sb.append(phone);
+//			sb.append(";");
+//			sb.append("地址:");
+//			sb.append(addressMsg);
+//			sb.append(";");
+			
+			sb.append("<div>");
 			sb.append("订单号:");
 			sb.append(orderId);
-			sb.append(";");
+			sb.append("</div><br/>");
+			
+			sb.append("<div>");
 			sb.append("商品名称:");
 			sb.append(goodsName);
-			sb.append(";");
+			sb.append("</div><br/>");
+			
+			sb.append("<div>");
 			sb.append("商品数量:");
 			sb.append(goodsNumber);
-			sb.append(";");
+			sb.append("</div><br/>");
+			
+			sb.append("<div>");
 			sb.append("金额:");
 			sb.append(money);
-			sb.append(";");
+			sb.append("</div><br/>");
+			
+			sb.append("<div>");
 			sb.append("收货人:");
 			sb.append(userName);
-			sb.append(";");
+			sb.append("</div><br/>");
+			
+			sb.append("<div>");
 			sb.append("联系电话:");
 			sb.append(phone);
-			sb.append(";");
+			sb.append("</div><br/>");
+			
+			sb.append("<div>");
 			sb.append("地址:");
 			sb.append(addressMsg);
-			sb.append(";");
+			sb.append("</div><br/>");
 			
 			MimeMessage mimeMessage = mailSender.createMimeMessage();
             MimeMessageHelper message = new MimeMessageHelper(mimeMessage);
@@ -119,7 +154,8 @@ public class SendTemlateMessage {
             message.setTo("305711597@qq.com");//设置收信人
             message.setSubject("小程序下单");	//设置主题
             
-            message.setText(sb.toString());//第二个参数true表示使用HTML语言来编写邮件
+//            message.setText(sb.toString());//第二个参数true表示使用HTML语言来编写邮件
+            message.setText(sb.toString(),true);
 
             mailSender.send(mimeMessage);
 			return "success";

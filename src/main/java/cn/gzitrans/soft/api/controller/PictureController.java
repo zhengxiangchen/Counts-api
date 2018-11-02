@@ -43,7 +43,7 @@ public class PictureController {
 	
 	/**
 	 * 接收小程序传过来的图片以及标注信息
-	 * @param request
+	 * @param
 	 * @return
 	 */
 	@RequestMapping(value = "/upload", method = RequestMethod.POST)

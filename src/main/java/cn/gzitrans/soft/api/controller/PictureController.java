@@ -32,7 +32,7 @@ public class PictureController {
 	public static Logger logger = LogManager.getLogger(PictureController.class);
 	
 	@Value("${upload_path}")
-	private String filePath;//D://counts_img/
+	private String filePath;//D://all_images/
 	
 	@Value("${static_path}")
 	private String staticPath;//http://127.0.0.1:8080/
@@ -74,8 +74,6 @@ public class PictureController {
 		
 		return "success";
 	}
-	
-	
 	
 	/**
 	 * 根据用户id和批次号查找该条件下的图片记录并返回
